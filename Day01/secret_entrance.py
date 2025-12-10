@@ -22,23 +22,21 @@ def process_commands(filename):
         direction = line[0]
         value = int(line[1:])
         
-        if direction == 'L':
-            number = (number - value) % 100
-        elif direction == 'R':
-            number = (number + value) % 100
-
-        if number == 0:
-            zero_count += 1
+        for _ in range(value):
+            if direction == 'L':
+                number = (number - 1) % 100
+            elif direction == 'R':
+                number = (number + 1) % 100
+            
+            if number == 0:
+                zero_count += 1
     
-    return number, zero_count
+    return zero_count
 
 def main():
-    result = process_commands("input.txt")
+    count = process_commands("input.txt")
 
-    if result is not None:
-        final_number, zero_times = result
-        print(f"Final number: {final_number}")
-        print(f"Number reached 0: {zero_times} time(s)")
+    print(f"Final count: {count} time(s)")
 
 if __name__ == "__main__":
     main()
